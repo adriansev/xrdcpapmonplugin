@@ -26,18 +26,17 @@ BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %define __libdir /usr/%{__lib}
 %define __incdir /usr/include
 %define __xrootddir /usr
-%define __tkauthzlibdir /usr/%{__lib}
-%define __tkauthzincdir /usr/include
 %define __sslincdir /usr/include
+%define __apmondir /usr
 
-AutoReqProv: no
 Requires: xrootd-server >= 4.1.0
-## Requires: tokenauthz >= 1.1.8
+Requires: ApMon_cpp
 ## Requires: xrootd-server >= 4.0.0 , xrootd-client >= 4.0.0 , tokenauthz , openssl
 
 BuildRequires: xrootd-private-devel >= 4.1.0
 BuildRequires: xrootd-devel >= 4.1.0
 BuildRequires: xrootd-server-devel >= 4.1.0
+BuildRequires: ApMon_cpp
 
 %description
 This file implements an instance of the XrdClientAbsMonIntf abstract class,
@@ -48,7 +47,7 @@ to be used to send data from xrdcp to Monalisa in the Alice environment
 ./BOOTSTRAP
 
 %build
-./configure --prefix=%{__prefix} --libdir=%{__libdir} --with-xrootd-location=%{__xrootddir} --with-apmon-location=/usr
+./configure --prefix=%{__prefix} --libdir=%{__libdir} --with-xrootd-location=%{__xrootddir} --with-apmon-location=%{__apmondir}
 
 make %{?_smp_mflags}
 make install DESTDIR=$RPM_BUILD_ROOT
