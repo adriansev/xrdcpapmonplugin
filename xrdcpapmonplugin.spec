@@ -7,7 +7,7 @@
 %endif
 
 Summary: XrdcpApmonPlugin
-Name:xrdcpapmonplugin
+Name:    xrootd-xrdcpapmonplugin
 Version: 1.1.1
 Release: 1%{?dist}
 License: none
@@ -44,7 +44,7 @@ to be used to send data from xrdcp to Monalisa in the Alice environment
 
 %prep
 %setup -q
-./BOOTSTRAP
+./bootstrap.sh
 
 %build
 ./configure --prefix=%{__prefix} --libdir=%{__libdir} --with-xrootd-location=%{__xrootddir} --with-apmon-location=%{__apmondir}
@@ -62,5 +62,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc
 
 %changelog
-* Mon May 17 2016 - xrdcpapmonplugin
+* Tue May 17 2016 - xrdcpapmonplugin
 - Initial build.
